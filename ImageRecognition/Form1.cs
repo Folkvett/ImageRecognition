@@ -18,6 +18,72 @@ namespace ImageRecognition
             InitializeComponent();
         }
 
+        private Bitmap applyGaussianFilter(Bitmap image)
+        {
+            Bitmap blurredImage = new Bitmap(image);
+
+            double weight = 3.0;
+            double[,] kernel = new double[3, 3];
+
+            int kernelRadius = 1;
+            double Euler = 1.0 / (2.0 * Math.PI * Math.Pow(weight, 2));
+            double distance = 0.0;
+
+            double sumTotal = 0;
+
+            // Set up our kernel
+            for (int kernelX = -kernelRadius; kernelX <= kernelRadius; ++kernelX)
+            {
+                for (int kernelY = -kernelRadius; kernelY <= kernelRadius; ++kernelY)
+                {
+                    distance = ((kernelX*kernelX) + (kernelY*kernelY))/ (2 * (weight*weight));
+
+                    // Since kernelX starts at -kernelRadius we normalize by adding kernelRadius
+                    kernel[kernelX + kernelRadius, kernelY + kernelRadius] = Euler * Math.Exp(-distance);
+
+                    sumTotal += kernel[kernelX + kernelRadius, kernelY + kernelRadius];
+                }
+            }
+
+            // Normalize the kernel so all elements together add up to 1
+            for (int y = 0; y < 3; ++y)
+                for (int x = 0; x < 3; ++x)
+                    kernel[x, y] = kernel[x, y] * (1.0 / sumTotal);
+
+            // Start applying the filter
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+            for (int y = 0 + kernelRadius; y < image.Height - kernelRadius; ++y)
+            {
+                for (int x = 0 + kernelRadius; x < image.Width - kernelRadius; ++x)
+                {
+                    red = 0.0;
+                    green = 0.0;
+                    blue = 0.0;
+
+                    // Apply the kernel for the pixel at X, Y
+                    for (int filterX = -kernelRadius; filterX <= kernelRadius; ++filterX)
+                    {
+                        for (int filterY = -kernelRadius; filterY <= kernelRadius; ++filterY)
+                        {
+                            red += image.GetPixel(x + kernelRadius, y + kernelRadius).R * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                            green += image.GetPixel(x + kernelRadius, y + kernelRadius).G * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                            blue += image.GetPixel(x + kernelRadius, y + kernelRadius).B * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                        }
+                    }
+
+                    blue = (blue > 255 ? 255 : (blue < 0 ? 0 : blue));
+                    green = (green > 255 ? 255 : (green < 0 ? 0 : green));
+                    red = (red > 255 ? 255 : (red < 0 ? 0 : blue));
+
+                    blurredImage.SetPixel(x, y, Color.FromArgb((int)red, (int)green, (int)blue));
+                }
+            }
+
+            return blurredImage;
+        }
+
         // Create a sliding window, a miniature image consisting of only a few pixels within
         // the full image
         private void slideWindow(Bitmap image)
@@ -91,6 +157,8 @@ namespace ImageRecognition
                     
                     btnSelectImage.Text = selectImageDialog.FileName;
 
+                    Bitmap blurredImage = applyGaussianFilter(selectedImage);
+
                     // Call on the sliding window function
                     slideWindow(selectedImage);
 
@@ -99,7 +167,10 @@ namespace ImageRecognition
                     stencilBox.Image = stencil;
 
                     imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                    imageBox.Image = selectedImage;                    
+                    imageBox.Image = selectedImage;
+
+                    blurredBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    blurredBox.Image = blurredImage;
                 }
                 catch (Exception ex)
                 {
