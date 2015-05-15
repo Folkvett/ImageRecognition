@@ -1,0 +1,9 @@
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\bin\Debug\ImageRecognition.exe.config
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\bin\Debug\ImageRecognition.exe
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\bin\Debug\ImageRecognition.pdb
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.csprojResolveAssemblyReference.cache
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.Properties.Resources.resources
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.csproj.GenerateResource.Cache
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.exe
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.pdb
+c:\users\patrik\documents\visual studio 2012\Projects\ImageRecognition\ImageRecognition\obj\Debug\ImageRecognition.Form1.resources
