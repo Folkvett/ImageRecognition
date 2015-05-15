@@ -39,7 +39,7 @@
             // 
             // btnSelectImage
             // 
-            this.btnSelectImage.Location = new System.Drawing.Point(485, 285);
+            this.btnSelectImage.Location = new System.Drawing.Point(647, 500);
             this.btnSelectImage.Name = "btnSelectImage";
             this.btnSelectImage.Size = new System.Drawing.Size(163, 41);
             this.btnSelectImage.TabIndex = 0;
@@ -51,23 +51,23 @@
             // 
             this.imageBox.Location = new System.Drawing.Point(12, 12);
             this.imageBox.Name = "imageBox";
-            this.imageBox.Size = new System.Drawing.Size(260, 180);
+            this.imageBox.Size = new System.Drawing.Size(445, 423);
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
             // stencilBox
             // 
-            this.stencilBox.Location = new System.Drawing.Point(411, 12);
+            this.stencilBox.Location = new System.Drawing.Point(488, 12);
             this.stencilBox.Name = "stencilBox";
-            this.stencilBox.Size = new System.Drawing.Size(260, 180);
+            this.stencilBox.Size = new System.Drawing.Size(463, 423);
             this.stencilBox.TabIndex = 2;
             this.stencilBox.TabStop = false;
             // 
             // blurredBox
             // 
-            this.blurredBox.Location = new System.Drawing.Point(747, 13);
+            this.blurredBox.Location = new System.Drawing.Point(984, 12);
             this.blurredBox.Name = "blurredBox";
-            this.blurredBox.Size = new System.Drawing.Size(297, 179);
+            this.blurredBox.Size = new System.Drawing.Size(488, 423);
             this.blurredBox.TabIndex = 3;
             this.blurredBox.TabStop = false;
             // 
@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 338);
+            this.ClientSize = new System.Drawing.Size(1484, 571);
             this.Controls.Add(this.blurredBox);
             this.Controls.Add(this.stencilBox);
             this.Controls.Add(this.imageBox);

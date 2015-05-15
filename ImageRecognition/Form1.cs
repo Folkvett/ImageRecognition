@@ -22,7 +22,7 @@ namespace ImageRecognition
         {
             Bitmap blurredImage = new Bitmap(image);
 
-            double weight = 3.0;
+            double weight = 5.0;
             double[,] kernel = new double[3, 3];
 
             int kernelRadius = 1;
@@ -67,15 +67,15 @@ namespace ImageRecognition
                     {
                         for (int filterY = -kernelRadius; filterY <= kernelRadius; ++filterY)
                         {
-                            red += image.GetPixel(x + kernelRadius, y + kernelRadius).R * kernel[filterX + kernelRadius, filterY + kernelRadius];
-                            green += image.GetPixel(x + kernelRadius, y + kernelRadius).G * kernel[filterX + kernelRadius, filterY + kernelRadius];
-                            blue += image.GetPixel(x + kernelRadius, y + kernelRadius).B * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                            red += image.GetPixel(x + filterX, y + filterY).R * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                            green += image.GetPixel(x + filterX, y + filterY).G * kernel[filterX + kernelRadius, filterY + kernelRadius];
+                            blue += image.GetPixel(x + filterX, y + filterY).B * kernel[filterX + kernelRadius, filterY + kernelRadius];
                         }
                     }
 
                     blue = (blue > 255 ? 255 : (blue < 0 ? 0 : blue));
                     green = (green > 255 ? 255 : (green < 0 ? 0 : green));
-                    red = (red > 255 ? 255 : (red < 0 ? 0 : blue));
+                    red = (red > 255 ? 255 : (red < 0 ? 0 : red));
 
                     blurredImage.SetPixel(x, y, Color.FromArgb((int)red, (int)green, (int)blue));
                 }
@@ -163,13 +163,13 @@ namespace ImageRecognition
                     slideWindow(selectedImage);
 
                     // Present the results
-                    stencilBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    stencilBox.SizeMode = PictureBoxSizeMode.Zoom;
                     stencilBox.Image = stencil;
 
-                    imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    imageBox.SizeMode = PictureBoxSizeMode.Zoom;
                     imageBox.Image = selectedImage;
 
-                    blurredBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                    blurredBox.SizeMode = PictureBoxSizeMode.Zoom;
                     blurredBox.Image = blurredImage;
                 }
                 catch (Exception ex)
